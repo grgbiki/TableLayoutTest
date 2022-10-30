@@ -15,27 +15,33 @@ class MainActivity : AppCompatActivity() {
         val table = findViewById<TableLayout>(R.id.table)
 
         addButton.setOnClickListener {
-
-            val tableRow = TableRow(applicationContext)
-            val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.WRAP_CONTENT)
-            tableRow.layoutParams = layoutParams
-            val androidVersion = TextView(applicationContext)
-            androidVersion.layoutParams = TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                1f
-            )
-            androidVersion.text = androidVersionEditText.text
-            val androidCodeName = TextView(applicationContext)
-            androidCodeName.layoutParams = TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                1f
-            )
-            androidCodeName.text = androidCodeNameEditText.text
-            tableRow.addView(androidVersion)
-            tableRow.addView(androidCodeName)
-            table.addView(tableRow)
+            if (androidVersionEditText.text.isNotEmpty() && androidCodeNameEditText.text.isNotEmpty()) {
+                val tableRow = TableRow(applicationContext)
+                val layoutParams = TableRow.LayoutParams(
+                    TableRow.LayoutParams.MATCH_PARENT,
+                    TableRow.LayoutParams.WRAP_CONTENT
+                )
+                tableRow.layoutParams = layoutParams
+                val androidVersion = TextView(applicationContext)
+                androidVersion.layoutParams = TableRow.LayoutParams(
+                    TableRow.LayoutParams.MATCH_PARENT,
+                    TableRow.LayoutParams.WRAP_CONTENT,
+                    1f
+                )
+                androidVersion.text = androidVersionEditText.text
+                val androidCodeName = TextView(applicationContext)
+                androidCodeName.layoutParams = TableRow.LayoutParams(
+                    TableRow.LayoutParams.MATCH_PARENT,
+                    TableRow.LayoutParams.WRAP_CONTENT,
+                    1f
+                )
+                androidCodeName.text = androidCodeNameEditText.text
+                tableRow.addView(androidVersion)
+                tableRow.addView(androidCodeName)
+                table.addView(tableRow)
+                androidVersionEditText.text.clear()
+                androidCodeNameEditText.text.clear()
+            }
         }
     }
 }
